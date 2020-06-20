@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+<div id="card">
+    <div id="inner-box">
+    <h1 id = "text-area">Watch This Text Change</h1>
+    <button id="my-button">Click on Me for New Text</button>
+    <button id="my-clear">Click on Me to Clear Text</button>
+    <button id="my-reset">Click on Me to Reset</button>
+</div>
+</div>
+
+<!-- This is the styling for the page-->
+    <style>
+       #card {
+           border: 5px dashed darkmagenta;
+           background-color: rgb(238, 244, 247);
+           margin: auto;
+           width: 50vw;
+       }
+       #inner-box {
+        margin: auto;
+        width: 40vw;
+       }
+       button {
+        background-color: lightblue;
+        display: block;
+        margin-bottom: 30px;
+        }
+    </style>
+<!--This is the Javascript for the event listener-->
+
+    <script>
+
+    //Here we are grabbing the IDS of thee buttons and giving
+    //each button a name so we can do something with it 
+    //in the Javascript
+
+
+        var myButton = document.getElementById("my-button");
+        var myClear = document.getElementById("my-clear");
+        var myReset = document.getElementById("my-reset");
+        var textArea = document.getElementById("text-area")
+
+    //Next, we are going to use that 'name' to attach an event listener
+
+    //The formula is this. First you have the name of the element 
+    // ie "myButton". Then  you call .addEventListener(). Inside the
+    // (), you need to add what it is listening for in quotes.
+    //In this case, it is a "click". The second thing you need to add
+    // is the name of the function (see below.)
+
+        myButton.addEventListener("click", changeTextWhenClicked);
+
+        function changeTextWhenClicked() {
+            textArea.textContent = "This is the New Text. Woo Hoo"
+
+        }
+
+    //Instead of using a named function like above,  you can also use a nameless 
+    // function. Here is how that would look:
+
+
+
+        myClear.addEventListener("click", function() {
+            textArea.textContent = ""
+        });
+        
+        
+    //It does the same thing. (I like to use named functions because
+    //I like everything in  Javascript to have name).
+
+    //Here it is one more time: 
+
+        myReset.addEventListener("click", resetTextWhenClicked);
+
+        function resetTextWhenClicked() {
+            textArea.textContent = "Watch This Text Change"
+
+        }
+
+
+    </script>
+</body>
+</html>
