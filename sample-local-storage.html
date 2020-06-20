@@ -22,7 +22,7 @@
 /* Here we are grabbing our happy and sad buttons by their ID */
        var happy = document.getElementById("happy");
        var sad = document.getElementById("sad");
-       
+
 /*And here we are grabbing the id of the span for the text we want to change */
        var howYouFeel = document.getElementById("how-you-feel");
        var howYouFeelSaved = document.getElementById("how-you-feel-saved");
@@ -58,12 +58,13 @@
 
 
            /* What you are saving is an object that takes a key pair. So, you have
-            * to give the data you are saving a key (a name). I choose feeling and
+            * to give the data you are saving a key (a name). I chose feeling and
             * set it as my first argument (The key is ALWAYS your first argument.)
             * Then, I set the value I wanted saved. In this case, I wanted to save
             * the value of the happy button, the happy emoji */
 
             //Take a look at this console.log to look at what that object looks like.
+
            console.log(localStorage);
 
            /*Finally, we want to get the item from Local Storage to use it.
@@ -79,6 +80,7 @@
        /* This is the same code again for the sad, so you can see it again.
         * This is verbose and in real life you would want to try to cut 
         * down some of the lines of code. But this is easier to read */
+       
         sad.addEventListener("click", function(){
 
            howYouFeel.textContent = sad.value;
