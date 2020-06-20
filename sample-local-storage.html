@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>How are You Feeling Today? </h2>
+    <!--Note here how we gave the button a value. That is a key to making thiw works-->
+
+    <button id= "happy" value= "😃"> Happy! Happy! </button>
+    <button id= "sad" value = "😥"> Sad</button>
+
+    <div id= "box">
+        <h2>You are feeling <span id= "how-you-feel">...</span></h2>
+        <h2>Your saved feeling <span id= "how-you-feel-saved">...</span></h2>
+    </div>
+
+   <script>
+
+/* Here we are grabbing our happy and sad buttons by their ID */
+       var happy = document.getElementById("happy");
+       var sad = document.getElementById("sad");
+       
+/*And here we are grabbing the id of the span for the text we want to change */
+       var howYouFeel = document.getElementById("how-you-feel");
+       var howYouFeelSaved = document.getElementById("how-you-feel-saved");
+
+/*Adding this line will make sure that you set the text content to the current feeling
+ * if there is one saved on refresh */
+
+       if (localStorage != null) {
+        howYouFeelSaved.textContent = localStorage.getItem('feeling');
+       }
+
+/*This is the event listener (see event-listener sample foe details) */
+       happy.addEventListener("click", function(){
+
+           /* See the value below? What line 37 is doing is setting the text content
+            * of the span we named howYouFeel to be the value associated with the thing
+            * we named happy. On line 21, we see it is the thing with the ID happy.
+            * In our HTML, on line 11, the thing is the button and that button has 
+            * been set to have a value of a happy emoji.
+            * So this code grabs that happy emoji and makes it the text content of the
+            * span howYouFeel */
+
+           howYouFeel.textContent = happy.value 
+           
+           
+
+           /* Here is our first Local Storage. Local storage is a window function
+            * so it is working behind the scenes. To use it you just have to call
+            * localStorage followed by the method used. In this case, it is going
+            *  to be setItem which sets the item into Local Storage. */
+
+           localStorage.setItem('feeling', happy.value);
+
+
+           /* What you are saving is an object that takes a key pair. So, you have
+            * to give the data you are saving a key (a name). I choose feeling and
+            * set it as my first argument (The key is ALWAYS your first argument.)
+            * Then, I set the value I wanted saved. In this case, I wanted to save
+            * the value of the happy button, the happy emoji */
+
+            //Take a look at this console.log to look at what that object looks like.
+           console.log(localStorage);
+
+           /*Finally, we want to get the item from Local Storage to use it.
+            * Most of this code should look familiar by now. The you are 
+            * setting the text Content of the saved span to equal the 
+            * localStorage item associated with the key 'feeling'.
+            * From the console.log, we know it is the happy emoji. */
+
+           howYouFeelSaved.textContent = localStorage.getItem('feeling');
+
+
+       })
+       /* This is the same code again for the sad, so you can see it again.
+        * This is verbose and in real life you would want to try to cut 
+        * down some of the lines of code. But this is easier to read */
+        sad.addEventListener("click", function(){
+
+           howYouFeel.textContent = sad.value;
+           localStorage.setItem('feeling', sad.value);
+           console.log(localStorage);
+
+           howYouFeelSaved.textContent = localStorage.getItem('feeling');
+           
+          
+       })
+
+      
+   </script>
+</body>
+</html>
