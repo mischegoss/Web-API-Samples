@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id= "startbutton"> Click to Start</button>
+    <h1 id= "question"></h1>
+    <button id= "choice1" class= "choice hidden" value= "button1"></button>
+    <button id= "choice2" class= "choice hidden" value = "button2"> </button>
+    <button id= "choice3" class= "choice hidden" value = "button3"></button>
+    <button id= "choice4"  class= "choice hidden" value = "button4"></button>
+
+<style>
+    .choice {
+       
+        width: 50vw;
+        font-size: 30px; 
+    }
+    .hidden {
+        display: none;
+    }
+</style>
+<script>
+  var questions = [
+      { question: 'This is question 1.',
+        choice1 : 'choice1 of 1',
+        choice2: 'choice 2 of 1',
+        choice3: 'choice 3 of 1',
+        choice4: 'choice 4 of 1',
+        answer:  'choice1 of 1' },
+
+        { question: 'This is question 2.',
+        choice1 : 'choice1 of 2',
+        choice2: 'choice 2 of 2',
+        choice3: 'choice 3 of 2',
+        choice4: 'choice 4 of 1',
+        answer:  'choice 4 of 1' }
+  ]
+  
+  var question = document.getElementById("question")
+  var choice1 = document.getElementById("choice1")
+  var choice2 = document.getElementById("choice2")
+  var choice3 = document.getElementById("choice3")
+  var choice4 = document.getElementById("choice4")
+
+  var choices = document.querySelectorAll(".choice")
+  var i = 0
+
+
+function startGame() {
+button.style.display = "none";
+setInterval(setQuestion, 3000);
+
+function setQuestion() {
+
+if (i < questions.length) {
+question.textContent = questions[i].question
+    choices[0].classList.remove("hidden");
+    choices[1].classList.remove("hidden");
+    choices[2].classList.remove("hidden");
+    choices[3].classList.remove("hidden");
+   
+
+    choice1.textContent = questions[i].choice1
+    choice2.textContent = questions[i].choice2
+    choice3.textContent = questions[i].choice3
+    choice4.textContent = questions[i].choice4
+    i++
+} else {
+    for (x=0; x < 4; x++) {
+        choices[x].classList.add("hidden")
+    }
+    question.textContent = "No more questions"
+}
+}
+}
+
+var button = document.getElementById("startbutton");
+
+button.addEventListener("click", startGame)
+
+
+  
+
+  
+</script>
+    
+</body>
+</html>
