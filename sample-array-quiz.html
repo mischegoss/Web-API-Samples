@@ -1,5 +1,3 @@
-<!--I will add notes when I can but we will be going 
-    over this tomorrow in office hours-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +9,9 @@
 <body>
     <button id= "startbutton"> Click to Start</button>
     <h1 id= "question"></h1>
+
+    <!-- Take a loot at this. Here I have added multiple classes, an id
+         and a value to manipulate the buttons with Javascript-->
     <button id= "choice1" class= "choice hidden" value= "button1"></button>
     <button id= "choice2" class= "choice hidden" value = "button2"> </button>
     <button id= "choice3" class= "choice hidden" value = "button3"></button>
@@ -22,11 +23,18 @@
         width: 50vw;
         font-size: 30px; 
     }
+
+    /*This is setting the buttons to be hidden */
     .hidden {
         display: none;
     }
 </style>
 <script>
+/*Here is the question array. When we did arrays before,
+ * we usually would do something like this var question = ["a", "b"]
+ * Here we are doing the same thing. But this case, it is an 
+ * array of objects */ 
+
   var questions = [
       { question: 'This is question 1.',
         choice1 : 'choice1 of 1',
@@ -42,6 +50,8 @@
         choice4: 'choice 4 of 1',
         answer:  'choice 4 of 1' }
   ]
+
+  /*Here we are grabbing the question h2 and the buttons from the HTML. */ 
   
   var question = document.getElementById("question")
   var choice1 = document.getElementById("choice1")
@@ -49,17 +59,35 @@
   var choice3 = document.getElementById("choice3")
   var choice4 = document.getElementById("choice4")
 
+  /* This may be new. Here we are grabbing all things in the DOM with  the 
+     class of ".choice" */
+
   var choices = document.querySelectorAll(".choice")
+
+  /* Setting i to be zero. */
   var i = 0
 
 
 function startGame() {
-button.style.display = "none";
+    button.style.display = "none";
+
+/* I want the quuestions to change every second 
+ * so I use setInterval */addEventListener
 setInterval(setQuestion, 3000);
 
+
+/* This is the function that is named in the setInterval 
+ * (see setInterval notes for more info) */
 function setQuestion() {
 
+/*We ONLY want a new question to pop up IF there 
+ * is a question  left. So, we use an IF statement */
+
 if (i < questions.length) {
+
+/* This could use with a loop to make it DRY-er!
+ * but here we are removig the hidden  class and setting
+ * the text for the question */
 question.textContent = questions[i].question
     choices[0].classList.remove("hidden");
     choices[1].classList.remove("hidden");
@@ -73,6 +101,7 @@ question.textContent = questions[i].question
     choice4.textContent = questions[i].choice4
     i++
 } else {
+    /* Here is how it should really look. Note how much cleaner. */
     for (x=0; x < 4; x++) {
         choices[x].classList.add("hidden")
     }
